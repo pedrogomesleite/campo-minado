@@ -194,13 +194,15 @@ function updateGrid(x, y, button) {
   grid = newGrid;
   drawGrid(grid);
 }
-
+let isPlaying = true;
 function verify(x, y, notFirst) {
   if(win == 0) {
     lose = true;
-    if (victorySound.isLoaded()) {
+    if (victorySound.isLoaded() || isPlaying) {
       victorySound.play();
+      isPlaying = false;
     }
+    return;
   }
   if (x < 0 || x == gridW) {
     return;
