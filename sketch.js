@@ -198,7 +198,7 @@ let isPlaying = true;
 function verify(x, y, notFirst) {
   if(win == 0) {
     lose = true;
-    if (victorySound.isLoaded() || isPlaying) {
+    if (victorySound.isLoaded() && isPlaying) {
       victorySound.play();
       isPlaying = false;
     }
