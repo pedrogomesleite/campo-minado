@@ -215,7 +215,11 @@ function verify(x, y, notFirst) {
   verify(x - 1, y, true);
   verify(x + 1, y, true);
   verify(x, y - 1, true);
+  verify(x - 1, y - 1, true);
+  verify(x + 1, y - 1, true);
   verify(x, y + 1, true);
+  verify(x - 1, y + 1, true);
+  verify(x + 1, y + 1, true);
 }
 
 function verifyNumgrid(x, y, notFirst = true) {
