@@ -16,6 +16,7 @@ let win = 0;
 let qtdBombs;
 
 let victorySound;
+let isPlaying = true;
 
 
 
@@ -42,6 +43,7 @@ function inputChanged() {
 }
 
 function createGrid(bombs) {
+  isPlaying = true;
   lose = false;
   win = gridH * gridW - bombs;
   grid = [];
@@ -194,7 +196,7 @@ function updateGrid(x, y, button) {
   grid = newGrid;
   drawGrid(grid);
 }
-let isPlaying = true;
+
 function verify(x, y, notFirst) {
   if(win == 0) {
     lose = true;
