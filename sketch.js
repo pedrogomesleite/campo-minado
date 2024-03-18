@@ -15,6 +15,8 @@ let win = 0;
 
 let qtdBombs;
 
+let victorySound;
+
 
 
 function setup() {
@@ -27,6 +29,11 @@ function setup() {
   background(255);
   qtdBombs = createInput();
   qtdBombs.input(inputChanged);
+}
+
+function preload() {
+  let num = round(random(1,6));
+  victorySound = loadSound(`victory sounds/win${num}.mp3`);
 }
 
 function inputChanged() {
@@ -189,9 +196,12 @@ function updateGrid(x, y, button) {
 }
 
 function verify(x, y, notFirst) {
-  // if(count >= (gridH * gridW) / 100) {
-  //   return;
-  // }
+  if(win == 0) {
+    lose = true;
+    if (victorySound.isLoaded()) {
+      victorySound.play();
+    }
+  }
   if (x < 0 || x == gridW) {
     return;
   }
@@ -207,10 +217,12 @@ function verify(x, y, notFirst) {
   }
   if(verifyNumgrid(x,y) && notFirst){
     newGrid[x][y] = see;
+    win -= 1;
     return;
   }
   if (newGrid[x][y] == none || newGrid[x][y] == none + flag) {
     newGrid[x][y] = see;
+    win -= 1;
   }
   verify(x - 1, y, true);
   verify(x + 1, y, true);
